@@ -4,31 +4,23 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Util {
     // реализуйте настройку соеденения с БД
 
-    private static final String url = "jdbc:mysql://localhost:3306/";
-    private static final String usernameDB = "root";
-    private static final String passwordDB = "1234";
-
-    private static Connection connection;
+    private static final String URL = "jdbc:mysql://localhost:3306/new_schema";
+    private static final String USERNAME_DB = "root";
+    private static final String PASSWORD_DB = "1234";
 
     Util() {
 
     }
 
     public static Connection getConnection() {
+        Connection connection;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            connection = DriverManager.getConnection(url, usernameDB, passwordDB);
-        } catch (InstantiationException |
-                 IllegalAccessException |
-                 InvocationTargetException |
-                 NoSuchMethodException |
-                 ClassNotFoundException |
-                 SQLException e) {
+            connection = DriverManager.getConnection(URL, USERNAME_DB, PASSWORD_DB);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return connection;

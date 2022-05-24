@@ -62,6 +62,10 @@ public class User {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "User{" +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                "} \n";
     }
 }
