@@ -12,7 +12,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     }
     public void createUsersTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS userTable ( " +
+        final String sql = "CREATE TABLE IF NOT EXISTS userTable ( " +
                 "id  BIGINT NOT NULL AUTO_INCREMENT," +
                 "name VARCHAR(45) NULL," +
                 "lastName VARCHAR(45) NULL,"+
@@ -28,7 +28,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String sql = "DROP TABLE IF EXISTS userTable" ;
+        final String sql = "DROP TABLE IF EXISTS userTable" ;
 
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -58,18 +58,21 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
+        final String sql = "FROM User";
+
         Session session = Util.getSessionFactory().openSession();
-        List<User> listUser = session.createQuery("FROM User").list();
-        System.out.println(listUser);
+        List<User> listUser = session.createQuery(sql).list();
         session.close();
         return listUser;
     }
 
     @Override
     public void cleanUsersTable() {
+        final String sql = "DELETE User";
+
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.createQuery("DELETE User").executeUpdate();
+        session.createQuery(sql).executeUpdate();
         transaction.commit();
         session.close();
     }
