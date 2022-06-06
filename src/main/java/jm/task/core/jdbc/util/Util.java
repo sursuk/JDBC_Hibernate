@@ -12,12 +12,13 @@ public class Util {
     private static final String USERNAME_DB = "root";
     private static final String PASSWORD_DB = "1234";
 
+    private static Connection connection;
+
     Util() {
 
     }
 
     public static Connection getConnection() {
-        Connection connection;
         try {
             connection = DriverManager.getConnection(URL, USERNAME_DB, PASSWORD_DB);
         } catch (SQLException e) {
