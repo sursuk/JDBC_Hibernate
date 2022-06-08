@@ -9,8 +9,8 @@ public class UserServiceImpl implements UserService {
 
     final private UserDao USER_DAO = new UserDaoHibernateImpl();
 
-    public void createUsersTable() {
-        USER_DAO.createUsersTable();
+    public void createUsersTable() throws Exception {
+            USER_DAO.createUsersTable();
     }
 
     public void dropUsersTable() {

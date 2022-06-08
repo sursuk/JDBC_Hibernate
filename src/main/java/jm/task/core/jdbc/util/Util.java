@@ -20,6 +20,10 @@ public class Util {
     private static final String USERNAME_DB = "root";
     private static final String PASSWORD_DB = "1234";
 
+    private static SessionFactory sessionFactory = null;
+
+
+
     static Configuration configuration = new Configuration()
             .setProperty(Environment.URL, URL)
             .setProperty(Environment.USER, USERNAME_DB)
@@ -30,11 +34,8 @@ public class Util {
     }
 
     public static SessionFactory getSessionFactory() {
-
-
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties()).build();
-        return configuration.buildSessionFactory(serviceRegistry);
+        if(sessionFactory == null) sessionFactory = configuration.buildSessionFactory();
+        return sessionFactory;
     }
 
     public static Connection getConnection() {
