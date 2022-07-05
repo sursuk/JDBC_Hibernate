@@ -22,19 +22,21 @@ public class Util {
 
     private static SessionFactory sessionFactory = null;
 
-
-
     static Configuration configuration = new Configuration()
             .setProperty(Environment.URL, URL)
             .setProperty(Environment.USER, USERNAME_DB)
             .setProperty(Environment.PASS, PASSWORD_DB)
             .addAnnotatedClass(User.class);
 
+
+
     Util() {
     }
 
     public static SessionFactory getSessionFactory() {
-        if(sessionFactory == null) sessionFactory = configuration.buildSessionFactory();
+        if(sessionFactory == null) {
+            sessionFactory = configuration.buildSessionFactory();
+        }
         return sessionFactory;
     }
 
